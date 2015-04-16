@@ -59,56 +59,6 @@ namespace sqlite_to_postgres
             ExportImageTagsToMariaDB(img_list);
             //UpdateUriToMariaDB(img_list);
             npgsqlconn.Close();
-            #region sqlite_main 
-            /*Sto4.Program.connection = new SQLiteConnection("data source=\"C:\\Users\\macs\\Dropbox\\utils\\Erza\\erza4.sqlite\"");
-            Sto4.Program.connection.Open();*/
-            /*Sto4.Program.transaction = Sto4.Program.connection.BeginTransaction();
-            Console.WriteLine("Тегов: " + all_tags.Count.ToString());
-            for (int i =0; i <all_tags.Count; i++)
-            {
-                AddTagDB_sqlite(all_tags[i]);
-                Console.Write("\rДобавлени: {0}", i.ToString("000000"));
-            }
-            Sto4.Program.transaction.Commit();*/
-
-            /*for (int i = 0; i < img_list.Count; i++)
-            {
-                img_list[i].tags.Clear();
-            }
-            Console.Write("fsdhfdgsiufdsy");*/
-            /*Sto4.Program.transaction = Sto4.Program.connection.BeginTransaction();
-            List<image_tags> it = new List<image_tags>();
-            foreach (CImage img in img_list)
-            {
-                if (img.tags.Count > 0)
-                {
-                    List<long> tag_ids = get_tag_ids(img.tags);
-                    foreach (long tid in tag_ids)
-                    {
-                        it.Add(new image_tags(tid, img.id));
-                    }
-                }
-            }
-            int iii = 0;
-            foreach (image_tags image_tags_item in it)
-            {
-                string ins = "INSERT INTO image_tags (tag_id, image_id) VALUES ( @tag_id, @image_id)";
-                using (SQLiteCommand ins_command = new SQLiteCommand(ins, Sto4.Program.connection))
-                {
-                    ins_command.Parameters.Add("tag_id", DbType.Int64).Value = image_tags_item.tag_id;
-                    ins_command.Parameters.Add("image_id", DbType.Int64).Value = image_tags_item.image_id;
-                    ins_command.ExecuteNonQuery();
-                }
-                Console.Write("\r" + (iii++).ToString("######"));
-            }*/
-            /*for (int i = 0; i < img_list.Count;i++ )
-            {
-                NewImageDB_sqlite(img_list[i]);
-                Console.Write("\r" + i.ToString("######"));
-            }*/
-            /*Sto4.Program.transaction.Commit();
-            Sto4.Program.connection.Close();*/
-            #endregion
         }
         static void ExportTagsToMariaDB(List<CImage> img_list)
         {
