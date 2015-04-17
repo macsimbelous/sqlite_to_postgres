@@ -104,31 +104,9 @@ namespace sqlite_to_postgres
                 Console.Write("\rДобавляем картинки: {0}", i.ToString("######"));
             }
         }
-        static void UpdateUriToMariaDB(List<CImage> img_list)
-        {
-            Console.WriteLine();
-            for (int i = 0; i < img_list.Count; i++)
-            {
-                string ins = "UPDATE images SET uri = @uri WHERE hash = @hash";
-                using (NpgsqlCommand command = new NpgsqlCommand(ins, npgsqlconn))
-                {
-                    command.Parameters.AddWithValue("hash", img_list[i].hash);
-                    if (string.IsNullOrEmpty(img_list[i].file))
-                    {
-                        command.Parameters.AddWithValue("uri", System.DBNull.Value);
-                    }
-                    else
-                    {
-                        command.Parameters.AddWithValue("uri", img_list[i].file);
-                    }
-                    command.ExecuteNonQuery();
-                }
-                Console.Write("\rОбновляем картинки: {0}", i.ToString("######"));
-            }
-        }
         static void ExportImageTagsToMariaDB(List<CImage> img_list)
         {
-            Console.WriteLine("Формируем image_tags");
+            Console.WriteLine("\nФормируем image_tags");
             List<image_tags> it = new List<image_tags>();
             int count = 0;
             foreach (CImage img in img_list)
